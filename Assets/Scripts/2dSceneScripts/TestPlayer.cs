@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class TestPlayer : MonoBehaviour
 {
+    //I changed a line of code yay
     //Variables to be used can go here above the functions.
     private int _counter = 0;
     private float _horizontal;
-    [SerializeField] private float _speed = 5f;
-    [SerializeField] private float _jumpPower = 0.5f;
+    private float _speed;
+    private float _jumpPower;
     private bool _isFacingRight = true;
 
     [SerializeField] private Rigidbody2D _rigidbody;
@@ -24,6 +25,7 @@ public class TestPlayer : MonoBehaviour
     void Awake ()
     {
         Debug.Log("Awake is running!");
+        
     }
 
     //OnEnable is called ahead of Start and after Awake. 
@@ -31,6 +33,8 @@ public class TestPlayer : MonoBehaviour
     void OnEnable () 
     {
         Debug.Log("OnEnable is running!");
+        _speed = 5f;
+        _jumpPower = 5f;
     }
 
     // Start is called before the first frame update
@@ -45,15 +49,14 @@ public class TestPlayer : MonoBehaviour
     {
         if (_counter <= 0)
         {
-            _counter++;
             Debug.Log("Update is running!");
+            _counter++;
         }
 
         //MOVEMENT
         _horizontal = Input.GetAxisRaw("Horizontal");
         Flip();
         _rigidbody.velocity = new Vector2(_horizontal *_speed, _rigidbody.velocity.y);  
-
         //JUMP
         Jump();
     }

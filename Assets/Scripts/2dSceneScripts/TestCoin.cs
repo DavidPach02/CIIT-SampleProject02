@@ -20,6 +20,4 @@ public class TestCoin : MonoBehaviour
         TestGameManager.instance.AddScore(CoinValue);
         Debug.Log("Coin Destroyed!");
     }
-
-
 }

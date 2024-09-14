@@ -7,6 +7,7 @@ public class TestGameManager : MonoBehaviour
 {
     public static TestGameManager instance;
     public int Score = 0;
+    public int Lives = 3;
     public TextMeshProUGUI ScoreText;
 
     private float _baseJumpValue;
@@ -17,20 +18,27 @@ public class TestGameManager : MonoBehaviour
         instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         ScoreText.text = "0";
     }
 
     //COIN
-
     public void AddScore(int value) 
     {
         Score = Score + value;
         ScoreText.text = Score.ToString();
     }
 
+    public void ReduceLives (int value)
+    {
+        Lives = Lives - value;
+    }
+
+    public int GetLives ()
+    {
+        return Lives;
+    }
     //POWER UP
 
     public void GetBaseJumpValue (float value)
