@@ -10,7 +10,7 @@ public class TestPlayer : MonoBehaviour
     private int _counter = 0;
     private float _horizontal;
     private float _speed;
-    private float _jumpPower;
+    [SerializeField] private float _jumpPower;
     private bool _isFacingRight = true;
 
     [SerializeField] private Rigidbody2D _rigidbody;
@@ -34,7 +34,7 @@ public class TestPlayer : MonoBehaviour
     {
         Debug.Log("OnEnable is running!");
         _speed = 5f;
-        _jumpPower = 5f;
+        _jumpPower = 30f;
     }
 
     // Start is called before the first frame update
@@ -56,9 +56,23 @@ public class TestPlayer : MonoBehaviour
         //MOVEMENT
         _horizontal = Input.GetAxisRaw("Horizontal");
         Flip();
-        _rigidbody.velocity = new Vector2(_horizontal *_speed, _rigidbody.velocity.y);  
+        _rigidbody.velocity = new Vector2(_horizontal * _speed, _rigidbody.velocity.y);
         //JUMP
         Jump();
+
+        Vector2 origin = this.transform.position + new Vector3(0, -0.55f);
+
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, Vector2.down * 0.2f);
+        Debug.DrawRay(origin, Vector2.down * 0.2f, Color.red);
+        Debug.Log(raycastHit2D.collider.gameObject.name);
+        if (raycastHit2D.collider != null)
+        {
+            Rigidbody2D otherRigidBody = raycastHit2D.collider.GetComponent<Rigidbody2D>();
+            if (otherRigidBody != null)
+            {
+                _rigidbody.velocity += new Vector2(otherRigidBody.velocity.x, 0f);
+            }
+        }
     }
 
     void OnDisable()
@@ -88,12 +102,13 @@ public class TestPlayer : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, JumpPower);
+            _rigidbody.AddForce(Vector2.up * JumpPower);
+            //_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, JumpPower);
         }
-        if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0f)
-        {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.2f);
-        }
+        //if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0f)
+        //{
+        //    _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.2f);
+        //}
     }
 
     private bool IsGrounded()

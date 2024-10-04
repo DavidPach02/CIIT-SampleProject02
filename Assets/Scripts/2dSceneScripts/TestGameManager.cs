@@ -13,6 +13,9 @@ public class TestGameManager : MonoBehaviour
     private float _baseJumpValue;
     private float _modifiedJumpValue;
 
+    public Camera _camera;
+    public TestPlayer _player;
+
     void Awake ()
     {
         instance = this;
@@ -21,6 +24,7 @@ public class TestGameManager : MonoBehaviour
     void Start()
     {
         ScoreText.text = "0";
+        _camera.GetComponent<CameraFollow>().playerRef = _player;
     }
 
     //COIN
