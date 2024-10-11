@@ -19,8 +19,8 @@ public class Powerup : MonoBehaviour
         // Apply the powerup
         if (collision.gameObject.tag == "Player")
         {
-            TestGameManager.instance.ModifyJump(IncreaseJumpValue);
-            collision.gameObject.GetComponent<TestPlayer>().JumpPower = TestGameManager.instance.SetJumpValue();
+            TestGameManager.Instance.ModifyJump(IncreaseJumpValue);
+            collision.gameObject.GetComponent<TestPlayer>().JumpPower = TestGameManager.Instance.SetJumpValue();
             Destroy(this.gameObject);
         }
     }

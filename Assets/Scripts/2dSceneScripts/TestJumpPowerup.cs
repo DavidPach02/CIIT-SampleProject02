@@ -10,16 +10,16 @@ public class TestJumpPowerup : MonoBehaviour
     {
         if (objectCollidedWith.gameObject.tag == "Player")
         {
-            Debug.Log("You got a jump powerup");
-            TestGameManager.instance.ModifyJump(IncreasedJumpValue);
-            objectCollidedWith.gameObject.GetComponent<TestPlayer>().JumpPower = TestGameManager.instance.SetJumpValue();
+            //Debug.Log("You got a jump powerup");
+            TestGameManager.Instance.ModifyJump(IncreasedJumpValue);
+            objectCollidedWith.gameObject.GetComponent<TestPlayer>().JumpPower = TestGameManager.Instance.SetJumpValue();
         }
         Destroy(gameObject);
     }
 
     void OnDestroy ()
     {
-        Debug.Log("Powerup Destroyed!");
+        //Debug.Log("Powerup Destroyed!");
     }
 
 

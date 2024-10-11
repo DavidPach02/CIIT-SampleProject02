@@ -24,7 +24,7 @@ public class TestPlayer : MonoBehaviour
     // Awake is called ahead of Start and OnEnable.
     void Awake ()
     {
-        Debug.Log("Awake is running!");
+        //Debug.Log("Awake is running!");
         
     }
 
@@ -32,7 +32,7 @@ public class TestPlayer : MonoBehaviour
     //Good for resetting objects when needed.
     void OnEnable () 
     {
-        Debug.Log("OnEnable is running!");
+        //Debug.Log("OnEnable is running!");
         _speed = 5f;
         _jumpPower = 30f;
     }
@@ -40,8 +40,8 @@ public class TestPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Start is running!");
-        TestGameManager.instance.GetBaseJumpValue(JumpPower);
+        //Debug.Log("Start is running!");
+        TestGameManager.Instance.GetBaseJumpValue(JumpPower);
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class TestPlayer : MonoBehaviour
     {
         if (_counter <= 0)
         {
-            Debug.Log("Update is running!");
+            //Debug.Log("Update is running!");
             _counter++;
         }
 
@@ -64,9 +64,9 @@ public class TestPlayer : MonoBehaviour
 
         RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, Vector2.down * 0.2f);
         Debug.DrawRay(origin, Vector2.down * 0.2f, Color.red);
-        Debug.Log(raycastHit2D.collider.gameObject.name);
         if (raycastHit2D.collider != null)
         {
+            //Debug.Log(raycastHit2D.collider.gameObject.name);
             Rigidbody2D otherRigidBody = raycastHit2D.collider.GetComponent<Rigidbody2D>();
             if (otherRigidBody != null)
             {
@@ -77,13 +77,13 @@ public class TestPlayer : MonoBehaviour
 
     void OnDisable()
     {
-        Debug.Log("OnDisable is running!");
+        //Debug.Log("OnDisable is running!");
     }
 
     void OnDestroy ()
     {
-        Debug.Log("OnDestroy is running!");
-        Application.LoadLevel (Application.loadedLevel);
+        //Debug.Log("OnDestroy is running!");
+        //Application.LoadLevel (Application.loadedLevel);
     }
 
     //MOVEMENT FUNCTIONS
