@@ -20,6 +20,7 @@ public class TestPlayer : MonoBehaviour
     public Transform GroundChecker { get => _groundChecker; set => _groundChecker = value; }
     public float JumpPower { get => _jumpPower; set => _jumpPower = value; }
 
+    public Animator animator;
 
     // Awake is called ahead of Start and OnEnable.
     void Awake ()
@@ -73,6 +74,9 @@ public class TestPlayer : MonoBehaviour
                 _rigidbody.velocity += new Vector2(otherRigidBody.velocity.x, 0f);
             }
         }
+
+        animator.SetBool("IsMoving", _horizontal != 0);
+        animator.SetBool("OnAir", !IsGrounded());
     }
 
     void OnDisable()

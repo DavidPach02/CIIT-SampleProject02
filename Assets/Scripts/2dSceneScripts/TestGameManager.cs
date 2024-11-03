@@ -9,12 +9,18 @@ public class TestGameManager : MonoBehaviour
     public int Score = 0;
     public int Lives = 3;
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI LivesText;
 
     private float _baseJumpValue;
     private float _modifiedJumpValue;
 
     public Camera _camera;
     public TestPlayer player;
+    public PostProcesssingController postProcesssingController;
+
+    public TestPlayer playerPrefab;
+
+    public Vector3 checkpointPos;
 
     void Awake ()
     {
@@ -24,7 +30,9 @@ public class TestGameManager : MonoBehaviour
     void Start()
     {
         ScoreText.text = "0";
+        LivesText.text = Lives.ToString();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<TestPlayer>();
+        checkpointPos = player.transform.position;
         _camera.GetComponent<CameraFollow>().playerRef = player;
 
         //Debug.Log(TestSaveSystem.Instance.loadLevel);
@@ -49,9 +57,24 @@ public class TestGameManager : MonoBehaviour
         ScoreText.text = Score.ToString();
     }
 
-    public void ReduceLives (int value)
+    public void ModifyLives (int value)
     {
         Lives = Lives - value;
+        LivesText.text = Lives.ToString();
+
+        postProcesssingController.SetDangerPostProcess(Lives <= 1);
+        if (Lives > 0)
+        {
+            SpawnPlayer();
+        }
+    }
+
+    public void SpawnPlayer()
+    {
+        GameObject gameObject = Instantiate(playerPrefab.gameObject, null, true);
+        gameObject.transform.position = checkpointPos;
+        player = gameObject.GetComponent<TestPlayer>();
+        _camera.GetComponent<CameraFollow>().playerRef = player;
     }
 
     public int GetLives ()
