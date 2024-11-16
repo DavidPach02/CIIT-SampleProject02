@@ -1970,7 +1970,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
+  m_fontSize: 42.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2293,8 +2293,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 118.799995, y: -216}
-  m_SizeDelta: {x: 197.59999, y: 0}
+  m_AnchoredPosition: {x: 162.3, y: -315.02002}
+  m_SizeDelta: {x: 284.6, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1469677616
 MonoBehaviour:
@@ -2490,6 +2490,7 @@ GameObject:
   - component: {fileID: 1688796400}
   - component: {fileID: 1688796399}
   - component: {fileID: 1688796398}
+  - component: {fileID: 1688796401}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -2556,11 +2557,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1688796399}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1688796401}
+        m_TargetAssemblyTypeName: TestLoadScreen, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1688796399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2599,6 +2612,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688796396}
   m_CullTransparentMesh: 1
+--- !u!114 &1688796401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688796396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d011bb1b7a6dc44199023ccced2d2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1708100533
 GameObject:
   m_ObjectHideFlags: 0

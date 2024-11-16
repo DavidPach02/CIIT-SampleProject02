@@ -44,4 +44,9 @@ public class TestLoadScreen : MonoBehaviour
             yield return null;
         }
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
